@@ -8,17 +8,30 @@
 
 
 #import "GLAppDelegate.h"
-
-NSString *didReceiveLocalNotification = @"didReceiveLocalNotification";
-
-
+#import "GLViewController.h"
 @implementation GLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"111");
+    //当程序不在后台，没有运行的时候会直接从这个函数里面获取推送消息 UIApplicationLaunchOptionsLocalNotificationKey 本地推送key
+                                                         // UIApplicationLaunchOptionsRemoteNotificationKey 远程推送key
+    UILocalNotification *localNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotification) {
+        
+        NSString *value = [localNotification.userInfo allValues][0];
+        UIAlertView *alret = [[UIAlertView alloc]initWithTitle:@"提示" message:value delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+        [alret show];
+    }
+    
+
+    
+    
     [self createLocalNotification];
     return YES;
 }
+
+
 
 //创建一个本地推送
 - (void)createLocalNotification {
@@ -26,23 +39,15 @@ NSString *didReceiveLocalNotification = @"didReceiveLocalNotification";
     
     if (!notification) {
         return;
-    }
-    
-    
+    }    
     //获取当前日期
-    NSInteger time = [[NSDate date]timeIntervalSince1970];
-    time = time + 5;
-    
-    
-    NSDate *pushDate = [NSDate dateWithTimeIntervalSince1970:time];
-    
-    NSLog(@"pushDate = %@",pushDate);
+    NSDate *pushDate = [NSDate dateWithTimeIntervalSinceNow:10.f];
     //设置推送时间
     notification.fireDate = pushDate;
     //设置时区
     notification.timeZone = [NSTimeZone defaultTimeZone];
     //设置重复间隔
-    notification.repeatInterval = kCFCalendarUnitDay;
+//    notification.repeatInterval = kCFCalendarUnitDay;
     //设置推送声音
     notification.soundName = UILocalNotificationDefaultSoundName;
     //推送内容
@@ -58,6 +63,42 @@ NSString *didReceiveLocalNotification = @"didReceiveLocalNotification";
     
     
     
+}
+
+/**
+ *  本地推送
+ *
+ *  @param application   applicationState==UIApplicationStateActive 用户在前台
+ *  @param notification  applicationState==UIApllicationStateInactive 用户点击通知框进来的
+ */
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    if (application.applicationState == UIApplicationStateActive) {
+        [self alertString:@"用户正在前台"];
+//        NSLog(@"用户正在前台");
+    }else if (application.applicationState == UIApplicationStateInactive) {
+//        NSLog(@"用户点击通知框进来的");
+        [self alertString:@"用户点击通知框进来的"];
+    }
+    
+    NSLog(@"not = %@",notification.userInfo);
+    application.applicationIconBadgeNumber --;
+
+}
+
+/**
+ *  远程推送
+ *
+ *  @param application
+ *  @param userInfo    
+ */
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) {
+    
+}
+
+- (void)alertString:(NSString *)alert {
+    UIAlertView *alret = [[UIAlertView alloc]initWithTitle:@"提示" message:alert delegate:nil cancelButtonTitle:@"ok" otherButtonTitles: nil];
+    [alret show];
 }
 
 //第三步：解除本地推送
@@ -133,6 +174,8 @@ NSString *didReceiveLocalNotification = @"didReceiveLocalNotification";
 //    }
 //}
 
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -142,6 +185,8 @@ NSString *didReceiveLocalNotification = @"didReceiveLocalNotification";
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    NSTimeInterval time = [[UIApplication sharedApplication]backgroundTimeRemaining];
+    NSLog(@"time = %f",time);
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
@@ -160,15 +205,9 @@ NSString *didReceiveLocalNotification = @"didReceiveLocalNotification";
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    NSLog(@"程序马上完全退出");
 }
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    NSLog(@"not = %@",notification.userInfo);
-    application.applicationIconBadgeNumber --;
-    [[NSNotificationCenter defaultCenter]postNotificationName:didReceiveLocalNotification
-                                                       object:nil
-                                                     userInfo:nil];
-}
+
 
 @end

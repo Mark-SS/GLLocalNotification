@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3EA1D31E17F2E3FC0099D1B9 /* GLViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1D31D17F2E3FC0099D1B9 /* GLViewController2.m */; };
+		3EA1D32117F2E4750099D1B9 /* GLObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1D32017F2E4750099D1B9 /* GLObject.m */; };
 		3EBA749C17DEE99700DF7547 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBA749B17DEE99700DF7547 /* UIKit.framework */; };
 		3EBA749E17DEE99700DF7547 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBA749D17DEE99700DF7547 /* Foundation.framework */; };
 		3EBA74A017DEE99700DF7547 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EBA749F17DEE99700DF7547 /* CoreGraphics.framework */; };
@@ -37,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EA1D31C17F2E3FC0099D1B9 /* GLViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLViewController2.h; sourceTree = "<group>"; };
+		3EA1D31D17F2E3FC0099D1B9 /* GLViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLViewController2.m; sourceTree = "<group>"; };
+		3EA1D31F17F2E4750099D1B9 /* GLObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLObject.h; sourceTree = "<group>"; };
+		3EA1D32017F2E4750099D1B9 /* GLObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLObject.m; sourceTree = "<group>"; };
 		3EBA749817DEE99700DF7547 /* GLLocalNotification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GLLocalNotification.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EBA749B17DEE99700DF7547 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3EBA749D17DEE99700DF7547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -125,6 +131,10 @@
 				3EBA74B617DEE99700DF7547 /* MainStoryboard_iPad.storyboard */,
 				3EBA74B917DEE99700DF7547 /* GLViewController.h */,
 				3EBA74BA17DEE99700DF7547 /* GLViewController.m */,
+				3EA1D31C17F2E3FC0099D1B9 /* GLViewController2.h */,
+				3EA1D31D17F2E3FC0099D1B9 /* GLViewController2.m */,
+				3EA1D31F17F2E4750099D1B9 /* GLObject.h */,
+				3EA1D32017F2E4750099D1B9 /* GLObject.m */,
 				3EBA74A217DEE99700DF7547 /* Supporting Files */,
 			);
 			path = GLLocalNotification;
@@ -277,6 +287,8 @@
 			files = (
 				3EBA74A817DEE99700DF7547 /* main.m in Sources */,
 				3EBA74AC17DEE99700DF7547 /* GLAppDelegate.m in Sources */,
+				3EA1D32117F2E4750099D1B9 /* GLObject.m in Sources */,
+				3EA1D31E17F2E3FC0099D1B9 /* GLViewController2.m in Sources */,
 				3EBA74BB17DEE99700DF7547 /* GLViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +480,7 @@
 				3EBA74D517DEE99700DF7547 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EBA74D617DEE99700DF7547 /* Build configuration list for PBXNativeTarget "GLLocalNotificationTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +489,7 @@
 				3EBA74D817DEE99700DF7547 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
