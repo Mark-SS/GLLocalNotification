@@ -24,10 +24,8 @@
         [alret show];
     }
     
-
-    
-    
     [self createLocalNotification];
+    
     return YES;
 }
 
@@ -47,7 +45,7 @@
     //设置时区
     notification.timeZone = [NSTimeZone defaultTimeZone];
     //设置重复间隔
-//    notification.repeatInterval = kCFCalendarUnitDay;
+    notification.repeatInterval = kCFCalendarUnitDay;
     //设置推送声音
     notification.soundName = UILocalNotificationDefaultSoundName;
     //推送内容
@@ -90,7 +88,7 @@
  *  远程推送
  *
  *  @param application
- *  @param userInfo    
+ *  @param userInfo
  */
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo NS_AVAILABLE_IOS(3_0) {
     
